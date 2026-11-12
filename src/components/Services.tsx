@@ -8,7 +8,7 @@ export default function Services({ t }: { t: Copy }) {
     <section id="services" className="py-24 md:py-32">
       <Container>
         <div className="mb-12 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
-          <div><p className="eyebrow mb-4">What we do</p><SectionTitle>{t.sections.services}</SectionTitle></div>
+          <div><p className="eyebrow mb-4">{t.eyebrows.services}</p><SectionTitle>{t.sections.services}</SectionTitle></div>
           <p className="max-w-xl text-base leading-relaxed text-ink-2 md:justify-self-end md:text-lg">{t.description}</p>
         </div>
         <div className="grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-2">
