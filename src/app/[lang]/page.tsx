@@ -11,6 +11,8 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
+const hasProductionDomain = site.url !== "https://example.com";
+
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
@@ -22,11 +24,18 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
     name: t.name,
     description: t.description,
     telephone: site.phone,
+    ...(hasProductionDomain ? { url: new URL(`/${lang}`, site.url).toString() } : {}),
+    foundingDate: "1959",
+    areaServed: {
+      "@type": "Country",
+      name: lang === "ar" ? "البحرين" : "Bahrain",
+    },
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Workshop 4, Building D-378, Road 1205, Block 712",
-      addressLocality: "Salmabad",
-      addressCountry: "BH",
+      streetAddress: t.seo.structuredAddress.streetAddress,
+      addressLocality: t.seo.structuredAddress.addressLocality,
+      addressRegion: t.seo.structuredAddress.addressRegion,
+      addressCountry: t.seo.structuredAddress.addressCountry,
     },
     inLanguage: lang,
   };

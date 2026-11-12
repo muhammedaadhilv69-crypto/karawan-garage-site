@@ -11,10 +11,10 @@ export default function Contact({ t }: { t: Copy }) {
       <div className="pointer-events-none absolute -end-8 -top-16 size-72 rounded-full border border-white/10" />
       <Container className="relative grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <p className="eyebrow mb-5 text-signal">Get in touch</p>
+          <p className="eyebrow mb-5 text-signal">{t.eyebrows.contact}</p>
           <SectionTitle>{t.sections.contact}</SectionTitle>
           <p className="max-w-xl text-lg leading-relaxed text-white/60">{t.sections.contactText}</p>
-          <p className="mt-7 font-display text-2xl font-bold tracking-wide">{site.phone}</p>
+          <p className="mt-7 font-display text-2xl font-bold tracking-wide"><bdi dir="ltr">{site.phone}</bdi></p>
         </div>
         <div className="flex flex-wrap gap-3">
           <ButtonLink href={telLink}>{t.cta}<span aria-hidden="true" className="ms-3">↗</span></ButtonLink>
