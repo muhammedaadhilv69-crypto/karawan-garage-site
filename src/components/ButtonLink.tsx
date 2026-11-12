@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 const variants = {
-  solid: "border-brand bg-brand text-neutral-900",
+  solid: "border-signal bg-signal text-neutral-900",
   ghost: "border-white/55 bg-transparent text-white",
-  outline: "border-foreground bg-transparent text-foreground",
+  outline: "border-ink bg-transparent text-ink",
 };
 
 const sizes = {
