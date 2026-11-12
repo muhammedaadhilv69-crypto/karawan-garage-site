@@ -145,7 +145,7 @@ const ar: Copy = {
 
 export const copy: Record<Locale, Copy> = { en, ar };
 
-export const telLink = `tel:${site.phone.replace(/[^\\d+]/g, "")}`;
+export const telLink = `tel:${site.phone.replace(/[^\d+]/g, "")}`;
 export const whatsappLink = (t: Copy) =>
   site.whatsapp
     ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(t.whatsappMessage)}`
