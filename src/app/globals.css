@@ -369,3 +369,9 @@
     background-size: 3rem 3rem;
   }
 }
+
+
+/* Use the Arabic typeface for Arabic pages instead of relying on Latin fallbacks. */
+html[lang="ar"] body {
+  font-family: var(--font-ar), var(--font-body), sans-serif;
+}
