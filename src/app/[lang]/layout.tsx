@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLocale(lang)) return {};
   const t = copy[lang];
   return {
-    metadataBase: new URL(site.url),
+    metadataBase: site.url && site.url !== "https://example.com" ? new URL(site.url) : undefined,
     title: { default: t.name, template: `%s | ${t.name}` },
     description: t.description,
     alternates: { canonical: `/${lang}`, languages: { en: "/en", ar: "/ar" } },
