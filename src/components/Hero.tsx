@@ -14,7 +14,7 @@ export default function Hero({ t }: { t: Copy }) {
           <p className="eyebrow mb-7 text-signal">{t.name} <span className="text-white/35">/</span> Bahrain · 1959</p>
           <h1 className="max-w-[12ch] font-display text-[clamp(3.5rem,9vw,7.5rem)] font-extrabold leading-[0.94] tracking-[-0.065em] rtl:leading-[1.2] rtl:tracking-normal">
             {t.name}
-            <span className="mt-2 block text-brand">Since 1959.</span>
+            <span className="mt-2 block text-signal">Since 1959.</span>
           </h1>
           <p className="mt-8 max-w-[38rem] text-lg leading-relaxed text-white/65 md:text-xl">{t.tagline}</p>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -22,8 +22,8 @@ export default function Hero({ t }: { t: Copy }) {
             <ButtonLink href={site.mapsUrl} variant="ghost" external>{t.mapsLabel}</ButtonLink>
           </div>
           <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-sm text-white/55">
-            <span><strong className="me-2 text-brand">01</strong> {t.sections.services}</span>
-            <span><strong className="me-2 text-brand">02</strong> {t.sections.findUs}</span>
+            <span><strong className="me-2 text-signal">01</strong> {t.sections.services}</span>
+            <span><strong className="me-2 text-signal">02</strong> {t.sections.findUs}</span>
             <span className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-signal" /> {site.phone}</span>
           </div>
         </div>
@@ -32,16 +32,16 @@ export default function Hero({ t }: { t: Copy }) {
           <div className="absolute inset-4 border border-signal/40" />
           <div className="absolute inset-x-4 top-4 h-[58%] bg-[linear-gradient(145deg,#27333b_0%,#111820_58%,#202a31_100%)]">
             <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(135deg, transparent 48%, #e9a23b 49%, transparent 50%), linear-gradient(45deg, transparent 48%, #ffffff 49%, transparent 50%)", backgroundSize: "72px 72px" }} />
-            <div className="absolute bottom-7 start-7 border-s-2 border-brand ps-4">
-              <span className="block text-xs font-bold uppercase tracking-[0.24em] text-brand">Workshop craft</span>
+            <div className="absolute bottom-7 start-7 border-s-2 border-signal ps-4">
+              <span className="block text-xs font-bold uppercase tracking-[0.24em] text-signal">Workshop craft</span>
               <span className="mt-1 block font-display text-3xl font-bold text-white">Built on experience.</span>
             </div>
           </div>
-          <div className="absolute inset-x-4 bottom-4 flex h-[30%] items-center justify-between bg-brand px-7 text-[#111820]">
+          <div className="absolute inset-x-4 bottom-4 flex h-[30%] items-center justify-between bg-signal px-7 text-[#111820]">
             <div><span className="block text-xs font-bold uppercase tracking-[0.2em]">Established</span><span className="font-display text-6xl font-black leading-none">1959</span></div>
             <span className="max-w-[7rem] text-end text-sm font-bold leading-snug">A long-standing name in Bahrain automotive bodywork.</span>
           </div>
-          <span className="absolute -end-5 top-10 h-16 w-1 bg-brand" />
+          <span className="absolute -end-5 top-10 h-16 w-1 bg-signal" />
           <span className="absolute -start-5 bottom-16 h-16 w-1 bg-white/40" />
         </div>
       </Container>
