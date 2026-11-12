@@ -10,7 +10,7 @@ export default function Header({ lang, t }: { lang: Locale; t: Copy }) {
     <header className="sticky top-0 z-30 border-b border-white/10 bg-[#111820]/95 text-white backdrop-blur-xl">
       <Container className="flex min-h-20 items-center justify-between gap-4">
         <a href="#top" className="group flex min-w-0 items-center gap-3" aria-label={t.name}>
-          <span className="grid size-10 shrink-0 place-items-center border border-brand/70 bg-brand text-[#111820]">
+          <span className="grid size-10 shrink-0 place-items-center border border-signal/70 bg-signal text-[#111820]">
             <span className="font-display text-xl font-black">K</span>
           </span>
           <span className="min-w-0">
