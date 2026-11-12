@@ -12,7 +12,7 @@ export default function Hours({ t }: { t: Copy }) {
           <p className="eyebrow mb-4">Plan your visit</p>
           <SectionTitle>{t.sections.hours}</SectionTitle>
           <p className="max-w-lg leading-relaxed text-ink-2">{t.sections.hoursNote}</p>
-          <a href={`tel:${site.phone.replace(/[^\\d+]/g, "")}`} className="mt-6 inline-flex items-center gap-2 font-bold text-ink underline decoration-brand decoration-2 underline-offset-4">
+          <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`} className="mt-6 inline-flex items-center gap-2 font-bold text-ink underline decoration-signal decoration-2 underline-offset-4">
             {site.phone} <span aria-hidden="true">↗</span>
           </a>
         </div>
