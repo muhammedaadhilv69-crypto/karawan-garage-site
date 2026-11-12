@@ -9,11 +9,11 @@ export default function Hours({ t }: { t: Copy }) {
     <section id="hours" className="border-y border-hairline bg-[#ebe9e2] py-20 md:py-28">
       <Container className="grid gap-12 md:grid-cols-2 md:gap-20">
         <div>
-          <p className="eyebrow mb-4">Plan your visit</p>
+          <p className="eyebrow mb-4">{t.eyebrows.hours}</p>
           <SectionTitle>{t.sections.hours}</SectionTitle>
           <p className="max-w-lg leading-relaxed text-ink-2">{t.sections.hoursNote}</p>
-          <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`} className="mt-6 inline-flex items-center gap-2 font-bold text-ink underline decoration-signal decoration-2 underline-offset-4">
-            {site.phone} <span aria-hidden="true">↗</span>
+          <a href={`tel:${site.phone.replace(/[^\\d+]/g, "")}`} className="mt-6 inline-flex items-center gap-2 font-bold text-ink underline decoration-signal decoration-2 underline-offset-4">
+            <bdi dir="ltr">{site.phone}</bdi> <span aria-hidden="true">↗</span>
           </a>
         </div>
         <div className="flex flex-col justify-between border-s border-hairline ps-8 md:ps-12">
