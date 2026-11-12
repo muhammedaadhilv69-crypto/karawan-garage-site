@@ -16,22 +16,58 @@ export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
 
+const hasProductionDomain = site.url !== "https://example.com";
+const productionUrl = hasProductionDomain ? new URL(site.url) : undefined;
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   if (!isLocale(lang)) return {};
+
   const t = copy[lang];
+  const pageUrl = `/${lang}`;
+
   return {
-    metadataBase: site.url && site.url !== "https://example.com" ? new URL(site.url) : undefined,
-    title: { default: t.name, template: `%s | ${t.name}` },
+    metadataBase: productionUrl,
+    title: {
+      default: t.name,
+      template: `%s | ${t.name}`,
+    },
     description: t.description,
-    alternates: { canonical: `/${lang}`, languages: { en: "/en", ar: "/ar" } },
+    applicationName: t.name,
+    category: "automotive",
+    keywords: t.seo.keywords,
+    alternates: {
+      canonical: pageUrl,
+      languages: {
+        en: "/en",
+        ar: "/ar",
+        "x-default": "/en",
+      },
+    },
     openGraph: {
       title: t.name,
       description: t.description,
-      url: `/${lang}`,
+      url: pageUrl,
       siteName: t.name,
-      locale: lang === "ar" ? "ar_BH" : "en_US",
+      locale: lang === "ar" ? "ar_BH" : "en_BH",
+      alternateLocale: lang === "ar" ? ["en_BH"] : ["ar_BH"],
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t.name,
+      description: t.description,
+    },
+    robots: {
+      index: hasProductionDomain,
+      follow: hasProductionDomain,
+      googleBot: {
+        index: hasProductionDomain,
+        follow: hasProductionDomain,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
   };
 }
