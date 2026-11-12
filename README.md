@@ -1,46 +1,41 @@
-# Local Business One-Page Site Template (EN + AR)
+# Karawan Garage concept site (EN + AR)
 
-Next.js 15 (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui setup. English and Arabic (RTL) with a language toggle.
-A new client site is mostly editing **one file**: `content/site.config.ts`.
+Next.js App Router, TypeScript and Tailwind CSS v4. The site supports English (/en) and Arabic (/ar) with RTL layout and a language switch.
 
 ## Run it
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000  (redirects to /en or /ar)
+pnpm install
+pnpm dev
 ```
 
-## Make a site for a new client (about 3 hours)
+## Update the business content
 
-1. Copy this folder (or use it as a GitHub template repo).
-2. Edit `content/site.config.ts`:
-   - top part: domain, WhatsApp, phone, Maps link, colors, hours, gallery files
-   - bottom part: all text, once in English and once in Arabic
-3. Replace the images in `public/images/`. For WhatsApp link previews add a 1200x630 `.jpg` and point `openGraph.images` in `app/[lang]/layout.tsx` to it.
-4. `npm run build`, push to GitHub, import into Vercel (free tier), add the client's domain.
+Most client-specific content lives in src/content/site.config.ts.
 
-## English only or Arabic only?
+- site: approved production domain, phone, WhatsApp availability, Maps link, brand colors and any verified opening hours.
+- copy.en and copy.ar: all page copy, section labels, hero artwork text, footer labels and accessibility labels.
+- seo.keywords: locale-specific search keywords.
+- seo.structuredAddress: localized address fields used by the LocalBusiness structured data.
 
-Edit `locales` and `defaultLocale` in `lib/i18n.ts`. With one locale, delete the `LanguageSwitch` from `components/Header.tsx`.
+Replace site.url with the real, approved HTTPS domain before launch. While the URL is still https://example.com, the app intentionally disables indexing, does not emit production canonical/hreflang URLs, and returns an empty sitemap.
 
-## How the languages work
+Only enable WhatsApp after confirming that the business uses the number for WhatsApp. Confirm the Arabic business name, address, service descriptions, contact details and opening hours with the business before publishing.
 
-- URLs are `/en` and `/ar`. Visiting `/` redirects based on the browser language (`middleware.ts`).
-- `<html lang dir>` is set per language, so the whole layout flips for Arabic.
-- Use logical Tailwind classes (`ms-`, `me-`, `ps-`, `pe-`, `text-start`, `start-`, `end-`, `border-s`) instead of left/right ones.
-- Negative letter-spacing breaks Arabic letter joining. Headings use `rtl:tracking-normal` for that reason.
-- Phone numbers are wrapped in `<bdi dir="ltr">` so they don't flip in Arabic.
+## SEO and social previews
 
-## shadcn/ui
+- src/app/[lang]/layout.tsx defines locale-specific titles, descriptions, keywords, canonical URLs, hreflang alternates, Open Graph metadata, Twitter card metadata and crawler directives.
+- src/app/[lang]/opengraph-image.tsx generates a 1200×630 Open Graph image.
+- src/app/[lang]/twitter-image.tsx generates the large Twitter/X card image.
+- src/app/robots.ts and src/app/sitemap.ts generate production-aware crawler instructions and the bilingual sitemap.
+- src/app/[lang]/page.tsx emits localized Schema.org AutoRepair structured data.
 
-`components.json`, `lib/utils.ts` (`cn`) and the Tailwind v4 color tokens are already set up. `components/ui/` is empty.
+## Validate before deployment
 
 ```bash
-npx shadcn@latest add button dialog
+pnpm typecheck
+pnpm lint
+pnpm build
 ```
 
-If the CLI asks to overwrite `app/globals.css`, say no (or review the diff). Your brand colors from `site.config.ts` are applied as the shadcn tokens (`--primary`, `--background`, `--border`, `--ring`), and `bg-brand` is the main button color.
-
-## Change the look
-
-Colors: `site.colors` in the config. Fonts: `app/[lang]/layout.tsx`. Everything else is Tailwind classes in `components/`.
+Review both /en and /ar at desktop and mobile sizes, and verify the generated metadata and social previews after setting the production domain.
