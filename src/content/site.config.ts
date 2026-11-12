@@ -1,42 +1,37 @@
-// EVERYTHING client-specific lives in this file. Edit it, then swap images in /public/images.
-// Part 1: things that are the same in every language.
-// Part 2: the text, once per language (English + Arabic).
+// Client-specific content for the Karawan Garage concept.
+// Business details are based on publicly listed information and should be
+// confirmed with the business before this concept is published.
 
 import type { Locale } from "@/lib/i18n";
 
 type Day = "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun";
 
 export const site = {
-  url: "https://example.com", // the client's final domain (used for SEO and link previews)
+  url: "https://example.com", // Replace with the approved production domain.
   timezone: "Asia/Bahrain",
 
-  whatsapp: "97300000000", // digits only, with country code, no + or spaces
-  phone: "+973 0000 0000",
-  mapsUrl: "https://maps.google.com/?q=Manama+Bahrain",
-  instagram: "https://instagram.com/yourname", // "" to hide
+  // The public listing provides a landline and a mobile number, but does not
+  // confirm WhatsApp availability. Keep WhatsApp disabled until confirmed.
+  whatsapp: "",
+  phone: "+973 1778 5665",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Karawan+Garage+Salmabad+Bahrain",
+  instagram: "",
 
-  // Brand colors (any hex)
   colors: {
-    primary: "#0F3D3E", // hero, header, footer background
-    accent: "#C8963E", // main buttons
-    ink: "#1B1F1E", // body text
-    paper: "#F4F6F5", // page background
-    mist: "#DDE5E2", // borders and soft panels
+    primary: "#111820",
+    accent: "#E9A23B",
+    ink: "#17212B",
+    paper: "#F5F3EE",
+    mist: "#D9D8D1",
   },
 
-  // Gallery photos: drop files in /public/images and list them here (alt text is in the language sections below)
-  gallery: ["/images/1.svg", "/images/2.svg", "/images/3.svg", "/images/4.svg", "/images/5.svg", "/images/6.svg"],
+  // No verified workshop photography is available in this concept yet.
+  gallery: [],
 
-  // Opening hours, 24h format. open: null = closed that day. Day order here is the display order.
-  hours: [
-    { day: "Sat", open: "10:00", close: "23:00" },
-    { day: "Sun", open: "10:00", close: "23:00" },
-    { day: "Mon", open: "10:00", close: "23:00" },
-    { day: "Tue", open: "10:00", close: "23:00" },
-    { day: "Wed", open: "10:00", close: "23:00" },
-    { day: "Thu", open: "10:00", close: "23:30" },
-    { day: "Fri", open: "16:00", close: "23:30" },
-  ] as { day: Day; open: string | null; close: string | null }[],
+  // Public listings agree on Saturday–Thursday and Friday closure, but
+  // differ on the midday break and exact closing time. Show a call-to-confirm
+  // note rather than presenting an unverified live schedule.
+  hours: [] as { day: Day; open: string | null; close: string | null }[],
 };
 
 export type Copy = {
@@ -48,44 +43,46 @@ export type Copy = {
   call: string;
   instagram: string;
   whatsappMessage: string;
-  switchLabel: string; // label of the button that switches to the OTHER language
+  switchLabel: string;
   mapsLabel: string;
   sections: {
     services: string;
     gallery: string;
     testimonials: string;
     hours: string;
+    hoursNote: string;
     findUs: string;
     contact: string;
     contactText: string;
   };
-  status: { open: string; opensToday: string; closedToday: string; closedNow: string }; // {time} is replaced
+  status: { open: string; opensToday: string; closedToday: string; closedNow: string };
   time: { am: string; pm: string; to: string; closed: string };
   days: Record<Day, string>;
-  services: { title: string; description: string; price: string }[]; // price "" hides it
+  services: { title: string; description: string; price: string }[];
   galleryAlts: string[];
-  testimonials: { quote: string; name: string }[]; // [] hides the section
+  testimonials: { quote: string; name: string }[];
 };
 
 const en: Copy = {
-  name: "Al Fanar Barbers",
-  tagline: "Classic cuts and hot-towel shaves in the heart of Manama.",
-  description: "Al Fanar Barbers in Manama, Bahrain. Haircuts, beard trims and hot-towel shaves. Book on WhatsApp.",
-  address: "Building 0, Road 0, Block 0, Manama, Bahrain",
-  cta: "Book on WhatsApp",
+  name: "Karawan Garage",
+  tagline: "Bodywork, paint and modifications — serving Bahrain since 1959.",
+  description: "Karawan Garage is a Bahrain automotive workshop established in 1959, offering general body denting and painting, vehicle modifications and fibreglass modifications in Salmabad.",
+  address: "Workshop 4, Building D-378, Road 1205, Block 712, Salmabad, Bahrain",
+  cta: "Call the workshop",
   call: "Call",
   instagram: "Instagram",
-  whatsappMessage: "Hi! I'd like to book an appointment.",
+  whatsappMessage: "Hello Karawan Garage, I'd like to enquire about your services.",
   switchLabel: "العربية",
-  mapsLabel: "Open in Google Maps",
+  mapsLabel: "Get directions",
   sections: {
-    services: "Services and prices",
-    gallery: "Recent work",
-    testimonials: "What customers say",
-    hours: "Opening hours",
-    findUs: "Find us",
-    contact: "Ready for a fresh cut?",
-    contactText: "Send us a message with the day and time that suits you. We reply on WhatsApp.",
+    services: "Workshop services",
+    gallery: "Selected work",
+    testimonials: "Customer feedback",
+    hours: "Visiting information",
+    hoursNote: "Listed business hours are Saturday to Thursday, with Friday closed. Timings may include a midday break and can change — please call the workshop to confirm before visiting.",
+    findUs: "Find the workshop",
+    contact: "Let's talk about your vehicle",
+    contactText: "For bodywork, paint or modification enquiries, call the workshop directly. The team can advise on the next step and workshop availability.",
   },
   status: {
     open: "Open now, closes at {time}",
@@ -96,62 +93,60 @@ const en: Copy = {
   time: { am: "AM", pm: "PM", to: "to", closed: "Closed" },
   days: { Sat: "Saturday", Sun: "Sunday", Mon: "Monday", Tue: "Tuesday", Wed: "Wednesday", Thu: "Thursday", Fri: "Friday" },
   services: [
-    { title: "Classic haircut", description: "Scissor or clipper cut, finished with a hot-towel neck wipe.", price: "BD 4" },
-    { title: "Beard trim and shape", description: "Defined lines, balanced length, and a clean fade into the cheeks.", price: "BD 3" },
-    { title: "Hot-towel shave", description: "Straight-razor shave with warm towels and aftershave balm.", price: "BD 5" },
-    { title: "Kids' cut", description: "Under 12. Patient barbers and a calm chair.", price: "BD 3" },
-    { title: "Haircut and beard", description: "The full routine in one visit.", price: "BD 6" },
+    { title: "Body denting and repair", description: "General vehicle bodywork, denting and repair for a range of cars.", price: "" },
+    { title: "Automotive painting", description: "Vehicle paintwork and refinishing. Spies Hecker products are referenced in the workshop's public business description.", price: "" },
+    { title: "Vehicle modifications", description: "Automotive modification work tailored to the vehicle and requested finish.", price: "" },
+    { title: "Fibreglass modifications", description: "Fibreglass modification work as listed in the workshop's service profile.", price: "" },
   ],
-  galleryAlts: ["Fresh fade haircut", "Beard shaping", "Hot-towel shave", "Shop interior", "Barber chair", "Finished classic cut"],
-  testimonials: [
-    { quote: "Best fade I've had in Bahrain. I booked on WhatsApp and was in the chair in ten minutes.", name: "Hamad A." },
-    { quote: "Clean shop, on time, and they actually listen to what you ask for.", name: "Yousif K." },
-  ],
+  galleryAlts: [],
+  // No customer testimonials have been supplied or verified. Keep this empty
+  // rather than publishing invented endorsements.
+  testimonials: [],
 };
 
 const ar: Copy = {
-  name: "صالون الفنار للحلاقة",
-  tagline: "قصات كلاسيكية وحلاقة بالمنشفة الساخنة في قلب المنامة.",
-  description: "صالون الفنار للحلاقة في المنامة، البحرين. قص الشعر، تشذيب اللحية، وحلاقة بالمنشفة الساخنة. احجز عبر واتساب.",
-  address: "مبنى 0، طريق 0، مجمّع 0، المنامة، البحرين",
-  cta: "احجز عبر واتساب",
+  name: "كراج كروان",
+  tagline: "أعمال الهيكل والطلاء والتعديلات — نخدم البحرين منذ عام 1959.",
+  description: "كراج كروان ورشة سيارات في البحرين تأسست عام 1959، وتقدم أعمال سمكرة هياكل السيارات والطلاء وتعديلات المركبات والألياف الزجاجية في سلماباد.",
+  address: "ورشة 4، مبنى D-378، طريق 1205، مجمع 712، سلماباد، البحرين",
+  cta: "اتصل بالورشة",
   call: "اتصل",
   instagram: "إنستغرام",
-  whatsappMessage: "مرحباً! أرغب بحجز موعد.",
+  whatsappMessage: "مرحباً كراج كروان، أود الاستفسار عن خدماتكم.",
   switchLabel: "English",
-  mapsLabel: "افتح في خرائط Google",
+  mapsLabel: "احصل على الاتجاهات",
   sections: {
-    services: "الخدمات والأسعار",
-    gallery: "أحدث أعمالنا",
-    testimonials: "آراء عملائنا",
-    hours: "ساعات العمل",
-    findUs: "موقعنا",
-    contact: "جاهز لقصّة جديدة؟",
-    contactText: "أرسل لنا اليوم والوقت المناسبين لك، وسنردّ عليك عبر واتساب.",
+    services: "خدمات الورشة",
+    gallery: "من أعمالنا",
+    testimonials: "آراء العملاء",
+    hours: "معلومات الزيارة",
+    hoursNote: "تشير بيانات النشاط المنشورة إلى أن أيام العمل من السبت إلى الخميس، والجمعة مغلق. قد تتضمن المواعيد استراحة منتصف اليوم وقد تتغير؛ يرجى الاتصال بالورشة للتأكد قبل الزيارة.",
+    findUs: "موقع الورشة",
+    contact: "لنتحدث عن سيارتك",
+    contactText: "للاستفسار عن أعمال الهيكل أو الطلاء أو التعديلات، يرجى الاتصال بالورشة مباشرة. يمكن للفريق إرشادك إلى الخطوة التالية ومواعيد استقبال المركبات.",
   },
   status: {
-    open: "مفتوح الآن، يغلق في الساعة {time}",
-    opensToday: "مغلق الآن، يفتح اليوم في الساعة {time}",
+    open: "مفتوح الآن، يغلق في {time}",
+    opensToday: "مغلق الآن، يفتح اليوم في {time}",
     closedToday: "مغلق اليوم",
     closedNow: "مغلق لهذا اليوم",
   },
   time: { am: "ص", pm: "م", to: "إلى", closed: "مغلق" },
   days: { Sat: "السبت", Sun: "الأحد", Mon: "الاثنين", Tue: "الثلاثاء", Wed: "الأربعاء", Thu: "الخميس", Fri: "الجمعة" },
   services: [
-    { title: "قص الشعر الكلاسيكي", description: "قصّ بالمقص أو الماكينة، مع مسح الرقبة بالمنشفة الساخنة.", price: "4 د.ب" },
-    { title: "تحديد شكل اللحية وتنسيقها", description: "خطوط واضحة، طول متوازن، وتدرّج ناعم عند الخدّين.", price: "3 د.ب" },
-    { title: "حلاقة بالمنشفة الساخنة", description: "حلاقة بالشفرة المستقيمة مع مناشف دافئة ومرطب بعد الحلاقة.", price: "5 د.ب" },
-    { title: "قص الأطفال", description: "لمن هم دون 12 سنة. حلاقون صبورون وكرسي هادئ.", price: "3 د.ب" },
-    { title: "قص الشعر مع اللحية", description: "الخدمة الكاملة في زيارة واحدة.", price: "6 د.ب" },
+    { title: "سمكرة وإصلاح الهيكل", description: "أعمال هياكل السيارات والسمكرة والإصلاح لمختلف أنواع المركبات.", price: "" },
+    { title: "طلاء السيارات", description: "أعمال طلاء وتجديد المركبات. وتذكر معلومات الورشة المنشورة منتجات Spies Hecker ضمن وصف النشاط.", price: "" },
+    { title: "تعديلات المركبات", description: "أعمال تعديل السيارات بما يتناسب مع المركبة والنتيجة المطلوبة.", price: "" },
+    { title: "تعديلات الألياف الزجاجية", description: "أعمال تعديل الألياف الزجاجية كما وردت في ملف خدمات الورشة المنشور.", price: "" },
   ],
-  galleryAlts: ["تدرّج جديد", "تشكيل اللحية", "حلاقة بالمنشفة الساخنة", "داخل الصالون", "كرسي الحلاقة", "قص كلاسيكي منتهي"],
-  testimonials: [
-    { quote: "أفضل تدرّج حصلت عليه في البحرين. حجزت عبر واتساب وجلست على الكرسي خلال عشر دقائق.", name: "حمد ع." },
-    { quote: "الصالون نظيف، والالتزام بالمواعيد، وهم يسمعون طلبك فعلاً.", name: "يوسف ك." },
-  ],
+  galleryAlts: [],
+  testimonials: [],
 };
 
 export const copy: Record<Locale, Copy> = { en, ar };
 
-export const whatsappLink = (t: Copy) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(t.whatsappMessage)}`;
-export const telLink = `tel:${site.phone.replace(/[^\d+]/g, "")}`;
+export const telLink = `tel:${site.phone.replace(/[^\\d+]/g, "")}`;
+export const whatsappLink = (t: Copy) =>
+  site.whatsapp
+    ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(t.whatsappMessage)}`
+    : telLink;
