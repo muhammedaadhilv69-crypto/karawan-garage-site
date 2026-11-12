@@ -1,5 +1,5 @@
 import type { Copy } from "@/content/site.config";
-import { site, whatsappLink } from "@/content/site.config";
+import { whatsappLink } from "@/content/site.config";
 import type { Locale } from "@/lib/i18n";
 import Container from "./Container";
 import ButtonLink from "./ButtonLink";
@@ -30,6 +30,11 @@ export default function Header({ lang, t }: { lang: Locale; t: Copy }) {
           </ButtonLink>
         </div>
       </Container>
+      <nav aria-label="Main navigation" className="flex items-center gap-6 overflow-x-auto border-t border-white/10 px-5 py-3 text-xs font-semibold text-white/65 md:hidden">
+        <a className="whitespace-nowrap hover:text-brand" href="#services">{t.sections.services}</a>
+        <a className="whitespace-nowrap hover:text-brand" href="#hours">{t.sections.hours}</a>
+        <a className="whitespace-nowrap hover:text-brand" href="#contact">{t.sections.contact}</a>
+      </nav>
       <div className="progress-line" aria-hidden="true" />
     </header>
   );
