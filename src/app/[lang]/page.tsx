@@ -16,15 +16,18 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
   if (!isLocale(lang)) notFound();
   const t = copy[lang];
 
-  // Local-business structured data helps Google show the business correctly.
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "AutoRepair",
     name: t.name,
     description: t.description,
-    url: `${site.url}/${lang}`,
     telephone: site.phone,
-    address: t.address,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Workshop 4, Building D-378, Road 1205, Block 712",
+      addressLocality: "Salmabad",
+      addressCountry: "BH",
+    },
     inLanguage: lang,
   };
 

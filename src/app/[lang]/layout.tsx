@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLocale(lang)) return {};
   const t = copy[lang];
   return {
-    metadataBase: new URL(site.url),
-    title: t.name,
+    metadataBase: site.url && site.url !== "https://example.com" ? new URL(site.url) : undefined,
+    title: { default: t.name, template: `%s | ${t.name}` },
     description: t.description,
     alternates: { canonical: `/${lang}`, languages: { en: "/en", ar: "/ar" } },
     openGraph: {
@@ -32,7 +32,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       siteName: t.name,
       locale: lang === "ar" ? "ar_BH" : "en_US",
       type: "website",
-      images: [{ url: "/images/1.svg" }], // replace with a 1200x630 jpg/png for WhatsApp previews
     },
   };
 }
@@ -45,13 +44,19 @@ export default async function LangLayout({ children, params }: { children: React
   const vars = {
     "--primary": c.primary,
     "--brand-accent": c.accent,
+    "--accent": c.accent,
+    "--ink": c.ink,
+    "--paper": c.paper,
+    "--mist": c.mist,
     "--foreground": c.ink,
     "--background": c.paper,
     "--border": c.mist,
     "--input": c.mist,
     "--muted": c.mist,
     "--secondary": c.mist,
-    "--accent": c.mist,
+    "--font-display": "var(--f-display)",
+    "--font-body": "var(--f-body)",
+    "--font-ar": "var(--f-ar)",
     "--ring": c.accent,
   } as CSSProperties;
 

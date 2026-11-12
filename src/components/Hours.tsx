@@ -1,43 +1,24 @@
 import type { Copy } from "@/content/site.config";
 import { site } from "@/content/site.config";
-import { format12 } from "@/lib/i18n";
 import Container from "./Container";
 import SectionTitle from "./SectionTitle";
 import ButtonLink from "./ButtonLink";
 
 export default function Hours({ t }: { t: Copy }) {
   return (
-    <section id="hours" className="bg-card py-[clamp(2.5rem,7vw,5rem)]">
-      <Container className="grid gap-10 md:grid-cols-2">
+    <section id="hours" className="border-y border-hairline bg-[#ebe9e2] py-20 md:py-28">
+      <Container className="grid gap-12 md:grid-cols-2 md:gap-20">
         <div>
+          <p className="eyebrow mb-4">Plan your visit</p>
           <SectionTitle>{t.sections.hours}</SectionTitle>
-          <table className="w-full max-w-sm border-collapse">
-            <tbody>
-              {site.hours.map((h) => (
-                <tr key={h.day}>
-                  <th scope="row" className="w-32 border-b py-2 text-start font-bold">
-                    {t.days[h.day]}
-                  </th>
-                  <td className="border-b py-2 text-start">
-                    {h.open && h.close ? (
-                      <bdi>
-                        {format12(h.open, t.time)} {t.time.to} {format12(h.close, t.time)}
-                      </bdi>
-                    ) : (
-                      t.time.closed
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <p className="max-w-lg leading-relaxed text-ink-2">{t.sections.hoursNote}</p>
+          <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`} className="mt-6 inline-flex items-center gap-2 font-bold text-ink underline decoration-signal decoration-2 underline-offset-4">
+            {site.phone} <span aria-hidden="true">↗</span>
+          </a>
         </div>
-        <div>
-          <SectionTitle>{t.sections.findUs}</SectionTitle>
-          <p className="mb-5 max-w-[30ch]">{t.address}</p>
-          <ButtonLink href={site.mapsUrl} variant="outline" external>
-            {t.mapsLabel}
-          </ButtonLink>
+        <div className="flex flex-col justify-between border-s border-hairline ps-8 md:ps-12">
+          <div><p className="eyebrow mb-4">{t.sections.findUs}</p><h3 className="max-w-[15ch] font-display text-3xl font-bold leading-tight md:text-4xl">{t.address}</h3></div>
+          <ButtonLink href={site.mapsUrl} variant="outline" external className="mt-10 w-fit">{t.mapsLabel}<span aria-hidden="true" className="ms-3">↗</span></ButtonLink>
         </div>
       </Container>
     </section>

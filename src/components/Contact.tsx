@@ -1,25 +1,24 @@
 import type { Copy } from "@/content/site.config";
-import { site, whatsappLink, telLink } from "@/content/site.config";
+import { site, telLink } from "@/content/site.config";
 import Container from "./Container";
 import SectionTitle from "./SectionTitle";
 import ButtonLink from "./ButtonLink";
 
 export default function Contact({ t }: { t: Copy }) {
   return (
-    <section id="contact" className="bg-primary py-[clamp(2.5rem,7vw,5rem)] text-primary-foreground">
-      <Container>
-        <SectionTitle>{t.sections.contact}</SectionTitle>
-        <p className="mb-6 max-w-[40ch] opacity-90">{t.sections.contactText}</p>
+    <section id="contact" className="relative overflow-hidden bg-[#111820] py-24 text-white md:py-32">
+      <div className="pointer-events-none absolute -end-20 -top-28 size-96 rounded-full border border-signal/20" />
+      <div className="pointer-events-none absolute -end-8 -top-16 size-72 rounded-full border border-white/10" />
+      <Container className="relative grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <p className="eyebrow mb-5 text-signal">Get in touch</p>
+          <SectionTitle>{t.sections.contact}</SectionTitle>
+          <p className="max-w-xl text-lg leading-relaxed text-white/60">{t.sections.contactText}</p>
+          <p className="mt-7 font-display text-2xl font-bold tracking-wide">{site.phone}</p>
+        </div>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href={whatsappLink(t)}>{t.cta}</ButtonLink>
-          <ButtonLink href={telLink} variant="ghost">
-            {t.call} <bdi dir="ltr" className="ms-2">{site.phone}</bdi>
-          </ButtonLink>
-          {site.instagram && (
-            <ButtonLink href={site.instagram} variant="ghost" external>
-              {t.instagram}
-            </ButtonLink>
-          )}
+          <ButtonLink href={telLink}>{t.cta}<span aria-hidden="true" className="ms-3">↗</span></ButtonLink>
+          <ButtonLink href={site.mapsUrl} variant="ghost" external>{t.mapsLabel}</ButtonLink>
         </div>
       </Container>
     </section>
