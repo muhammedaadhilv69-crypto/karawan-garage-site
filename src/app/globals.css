@@ -354,3 +354,18 @@
     padding-bottom: 2.5rem;
   }
 }
+
+/* Karawan concept: subtle workshop-grid texture, kept behind the hero content. */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, #fff, transparent 96%) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, #fff, transparent 96%) 1px, transparent 1px);
+  background-size: 4.5rem 4.5rem;
+  background-position: center top;
+}
+
+@media (max-width: 639px) {
+  .hero-grid {
+    background-size: 3rem 3rem;
+  }
+}
