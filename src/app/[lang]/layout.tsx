@@ -36,18 +36,22 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     applicationName: t.name,
     category: "automotive",
     keywords: t.seo.keywords,
-    alternates: {
-      canonical: pageUrl,
-      languages: {
-        en: "/en",
-        ar: "/ar",
-        "x-default": "/en",
-      },
-    },
+    ...(productionUrl
+      ? {
+          alternates: {
+            canonical: new URL(pageUrl, productionUrl).toString(),
+            languages: {
+              en: new URL("/en", productionUrl).toString(),
+              ar: new URL("/ar", productionUrl).toString(),
+              "x-default": new URL("/en", productionUrl).toString(),
+            },
+          },
+        }
+      : {}),
     openGraph: {
       title: t.name,
       description: t.description,
-      url: pageUrl,
+      ...(productionUrl ? { url: new URL(pageUrl, productionUrl).toString() } : {}),
       siteName: t.name,
       locale: lang === "ar" ? "ar_BH" : "en_BH",
       alternateLocale: lang === "ar" ? ["en_BH"] : ["ar_BH"],
